@@ -10,6 +10,10 @@ const queue = new Map();
 const search = require('youtube-search');
 const bot = new Discord.Client();
 
+Externes
+if (!message.content.startsWith(prefix) || message.author.bot) return; 
+const args = message.content.slice(prefix.length).trim().split(' '); 
+const command = args.shift().toLowerCase(); 
     /****************************************************
     ************ YOUTUBE CHANNEL NAME UPDATE ************
     *******************************************(((((*****/
@@ -268,7 +272,7 @@ bot.on("message", async message => {
     /*****************************************
     ************ SYSTEME DE LEVEL ************
     ******************************************/
-   if (commande === 'lvl') {
+   if (command === 'lvl') {
     if (bdd["statut-level"] == true) {
         bdd["statut-level"] = false
         Savebdd();
@@ -281,7 +285,7 @@ bot.on("message", async message => {
 }
 
 if (bdd["statut-level"] == true) {
-    if (commande === 'level') {
+    if (command === 'level') {
         if (!bdd["coins-utilisateurs"][message.member.id]) return message.channel.send(`Nous n'avez pas encore posté de message !`);
         return message.channel.send(`Vous avez ${bdd["coins-utilisateurs"][message.member.id]} points !\nEt vous êtes au level n°${bdd["level-utilisateurs"][message.member.id]}`)
     }
